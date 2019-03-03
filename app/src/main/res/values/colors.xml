@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#000</color>
+    <color name="colorBlack">#000</color>
+    <color name="colorWhite">#fff</color>
+    <color name="colorBlackDullyTransparent">#0a000010</color>
+    <color name="phone_hint_text">#d5d5d5</color>
+
+    <color name="colorWhiteSemiTransparent">#CCFFFFFF</color>
+    <color name="colorWhiteHyperTransparent">#64ffffff</color>
+    <color name="colorBlackSemiTransparent">#5A000000</color>
+    <color name="colorBlackHyperTransparent">#7d000000</color>
+    <color name="colorTransparent">#00FFFFFF</color>
+</resources>

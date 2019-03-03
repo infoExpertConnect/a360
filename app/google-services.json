@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "636966529944",
+    "firebase_url": "https://numbers360-65bd6.firebaseio.com",
+    "project_id": "numbers360-65bd6",
+    "storage_bucket": "numbers360-65bd6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:636966529944:android:c86bd691828fb57c",
+        "android_client_info": {
+          "package_name": "com.pawanjes.a360"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "636966529944-r5dd6kg6hrlg85a4a5m0gbhdebfbeui8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pawanjes.a360",
+            "certificate_hash": "218ec2faa0f231aa0b6a7ad535e76ecf42d2d6e6"
+          }
+        },
+        {
+          "client_id": "636966529944-2c453k9pqojt7iufhiflcv3vh7ndpgtb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCn8F4p5cwFof_8prRfC_RJiQbjO4H9sG0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "636966529944-2c453k9pqojt7iufhiflcv3vh7ndpgtb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
