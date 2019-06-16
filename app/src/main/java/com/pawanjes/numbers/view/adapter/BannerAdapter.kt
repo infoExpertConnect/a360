@@ -1,11 +1,13 @@
-/*
-package com.pawanjes.a360.view.adapter
+package com.pawanjes.numbers.view.adapter
 
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
+import com.pawanjes.numbers.view.fragment.CarouselFragment
+import com.pawanjes.numbers.service.model.ImageData
+
 import java.util.*
 
 
@@ -37,4 +39,3 @@ class BannerAdapter(fm: FragmentManager, private val context: Context) : Fragmen
 
 
 }
-*/

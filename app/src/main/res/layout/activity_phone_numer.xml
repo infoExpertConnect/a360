@@ -10,14 +10,26 @@
 
     <ImageView
             android:src="@drawable/app_logo"
-            android:layout_width="100dp"
+            android:layout_width="150dp"
+            android:id="@+id/app_logo"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout17"
-            android:layout_height="100dp"
+            android:layout_height="150dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             tools:ignore="MissingConstraints"/>
 
+    <TextView
+            android:text="@string/string_nuber"
+            app:layout_constraintStart_toStartOf="@id/app_logo"
+            app:layout_constraintTop_toBottomOf="@id/app_logo"
+            app:layout_constraintEnd_toEndOf="@id/app_logo"
+            android:textColor="@color/colorBlack"
+            android:fontFamily="monospace"
+            android:textSize="40sp"
+            android:id="@+id/skip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     <LinearLayout
             android:id="@+id/linearLayout17"
             android:layout_width="wrap_content"
@@ -25,7 +37,9 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:background="@drawable/transperant_curved"
             android:layout_marginBottom="8dp"
+            android:padding="@dimen/padding_small"
             android:gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -38,7 +52,7 @@
                 android:layout_marginEnd="@dimen/padding_xsmall"
                 android:text="@string/countrycode"
                 android:textColor="@color/colorBlack"
-                android:textSize="@dimen/text_size_xmedium"
+                android:textSize="22sp"
                 android:textStyle="bold"/>
 
         <EditText
@@ -53,7 +67,7 @@
                 android:inputType="phone"
                 android:maxLength="10"
                 android:singleLine="true"
-                android:textSize="@dimen/text_size_xmedium"
+                android:textSize="22sp"
                 android:textStyle="bold"/>
 
     </LinearLayout>

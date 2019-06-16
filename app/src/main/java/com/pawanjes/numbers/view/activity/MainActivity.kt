@@ -1,17 +1,26 @@
 package com.pawanjes.numbers.view.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import com.pawanjes.numbers.R
+import com.pawanjes.numbers.view.adapter.FeedAdapter
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.content_main.*
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
+    override fun isHomeAsUpEnabled(): Boolean {
+        return false
+    }
+
+    override fun isToolbarRequired(): Boolean {
+        return false
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,14 +34,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val toggle = ActionBarDrawerToggle(
             this, drawer_layout, toolbar,
             R.string.navigation_drawer_open,
-
             R.string.navigation_drawer_close
         )
+
+        toggle.isDrawerIndicatorEnabled = true
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
 
+        var feedAdapter = FeedAdapter(this)
+        var linearLayoutManager: LinearLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        rv_lead_cat.layoutManager = linearLayoutManager
+        rv_lead_cat.adapter = feedAdapter
 
     }
 
@@ -40,7 +54,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START)
         } else {
-            super.onBackPressed()
+//            super.onBackPressed()
         }
     }
 
@@ -67,10 +81,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 // Handle the camera action
             }
             R.id.nav_contact -> {
-
+                var intent = Intent(this, AboutContactUsActivity::class.java)
+                intent.putExtra("type", 2)
+                startActivity(intent)
             }
             R.id.nav_about -> {
-
+                var intent = Intent(this, AboutContactUsActivity::class.java)
+                intent.putExtra("type", 1)
+                startActivity(intent)
             }
         }
 

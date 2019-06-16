@@ -16,10 +16,19 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            buildConfigField "String", "BASE_URL", '"http://numbers360.in"'
+            buildConfigField "String", "USER_NAME", '"numbers"'
+            buildConfigField "String", "PASSWORD", '"numbers@123"'
+        }
         release {
+            buildConfigField "String", "BASE_URL", '"http://numbers360.in"'
+            buildConfigField "String", "USER_NAME", '"numbers"'
+            buildConfigField "String", "PASSWORD", '"numbers@123"'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
     }
 }
 
@@ -37,4 +46,14 @@ dependencies {
 
     implementation 'com.github.bumptech.glide:glide:4.8.0'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
+
+    // Network
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+
+    implementation 'com.google.firebase:firebase-core:16.0.9'
+
+    implementation 'android.arch.lifecycle:extensions:1.1.1'
+//    implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
 }

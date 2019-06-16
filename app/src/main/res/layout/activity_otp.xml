@@ -74,6 +74,26 @@
                 android:maxLength="1"
                 android:paddingLeft="15dp"
                 android:singleLine="true"/>
+        <EditText
+                android:id="@+id/Edt_otp5"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="20dp"
+                android:hint="5"
+                android:inputType="number"
+                android:maxLength="1"
+                android:paddingLeft="15dp"
+                android:singleLine="true"/>
+        <EditText
+                android:id="@+id/Edt_otp6"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="20dp"
+                android:hint="5"
+                android:inputType="number"
+                android:maxLength="1"
+                android:paddingLeft="15dp"
+                android:singleLine="true"/>
     </LinearLayout>
     <Button
             android:id="@+id/phone_number_button"

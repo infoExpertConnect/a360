@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">360</string>
+    <string name="app_name">NobleConnect</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">UserName</string>
@@ -9,5 +9,9 @@
     <string name="phonenumber_edtTxt">Please Enter your phone number</string>
     <string name="countrycode">+91</string>
     <string name="phone_number_submit">Submit</string>
-    <string name="otp_text">Enter 4 digit OTP, we have just sent</string>
+    <string name="otp_text">Enter 6 digit OTP, we have just sent</string>
+    <string name="string_nuber">360</string>
+    <string name="loading">Please Wait…</string>
+    <string name="app_update_button">Update the app</string>
+    <string name="no_internet_connection">PLease Check Network conection</string>
 </resources>
