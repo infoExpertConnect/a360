@@ -37,21 +37,25 @@ class FeedAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.View
         this.leadList.addAll(leadlist)
         notifyDataSetChanged()
     }
+    fun getBanners(){
+        textViewModel!!.getBanners().observe(context as MainActivity, Observer {
+            if (it?.data != null) {
+                this.bannerList = it.data!!.banners as ArrayList<String>
+                notifyDataSetChanged()
+            }
+        })
+    }
     override fun getItemCount(): Int {
-        return leadList.size
+        return leadList.size+1
     }
 
     fun setViewModel(textViewModel: TextViewModel) {
         this.textViewModel = textViewModel
+        getBanners()
     }
 
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
         if (viewHolder.itemViewType == 0) {
-            textViewModel!!.getBanners().observe(context as MainActivity, Observer {
-                if (it?.data != null) {
-                    this.bannerList = it.data!!.banners as ArrayList<String>
-                }
-            })
             val bannerAdapter = BannerAdapter((context as MainActivity).supportFragmentManager, context)
             val holder1 = viewHolder as BannersHolder
             holder1.bannerPager.adapter = bannerAdapter

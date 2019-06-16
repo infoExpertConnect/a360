@@ -50,8 +50,8 @@ public class CarouselFragment extends Fragment {
         imageView = v.findViewById(R.id.imageView);
 
         RequestOptions requestOptions = new RequestOptions();
-        requestOptions.placeholder(R.color.colorTransparent);
-        requestOptions.error(R.drawable.image_not_found);
+        requestOptions.placeholder(R.drawable.bg);
+        requestOptions.error(R.drawable.bg);
         if (imageData != null)
             Glide.with(context).applyDefaultRequestOptions(requestOptions).load(imageData.getUrl()).into(imageView);
 
