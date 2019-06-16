@@ -3,6 +3,8 @@ package com.pawanjes.numbers.service.retrofit
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import com.pawanjes.numbers.service.model.AboutContactBean
+import com.pawanjes.numbers.service.model.BannersResponse
+import com.pawanjes.numbers.service.model.LeadResponse
 import com.pawanjes.numbers.service.model.RetrofitResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -48,6 +50,38 @@ class DataRepository private constructor() {
 
         })
         return contactusDetail
+
+    }
+
+    fun getMainLeads(): LiveData<RetrofitResponse<ArrayList<LeadResponse>>> {
+        val leadData = MutableLiveData<RetrofitResponse<ArrayList<LeadResponse>>>()
+        val call = dataService.getMainLeads()
+        call.enqueue(object : Callback<RetrofitResponse<ArrayList<LeadResponse>>> {
+            override fun onResponse(call: Call<RetrofitResponse<ArrayList<LeadResponse>>>, response: Response<RetrofitResponse<ArrayList<LeadResponse>>>) {
+                leadData.value = response.body()
+
+            }
+            override fun onFailure(call: Call<RetrofitResponse<ArrayList<LeadResponse>>>, t: Throwable) {
+                leadData.value = null
+            }
+        })
+        return leadData
+
+    }
+
+    fun getBanners(): LiveData<RetrofitResponse<BannersResponse>> {
+        val bannerData = MutableLiveData<RetrofitResponse<BannersResponse>>()
+        val call = dataService.getBanners()
+        call.enqueue(object : Callback<RetrofitResponse<BannersResponse>> {
+            override fun onResponse(call: Call<RetrofitResponse<BannersResponse>>, response: Response<RetrofitResponse<BannersResponse>>) {
+                bannerData.value = response.body()
+
+            }
+            override fun onFailure(call: Call<RetrofitResponse<BannersResponse>>, t: Throwable) {
+                bannerData.value = null
+            }
+        })
+        return bannerData
 
     }
 

@@ -1,5 +1,6 @@
 package com.pawanjes.numbers.view.adapter
 
+import android.arch.lifecycle.Observer
 import android.content.Context
 import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
@@ -11,27 +12,17 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import com.pawanjes.numbers.R
-import com.pawanjes.numbers.view.activity.MainActivity
 import com.pawanjes.numbers.service.model.ImageData
+import com.pawanjes.numbers.service.model.LeadResponse
+import com.pawanjes.numbers.view.activity.MainActivity
+import com.pawanjes.numbers.viewmodel.TextViewModel
 
 class FeedAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    /*init {
-        var imageData: ArrayList<ImageData> = ArrayList()
-        var im = ImageData()
-        im.url = "https://picsum.photos/500/200?image=0"
-        imageData.add(im)
-        imageData.add(im)
-        imageData.add(im)
-        imageData.add(im)
-        imageData.add(im)
-        imageData.add(im)
-        imageData.add(im)
-        imageData.add(im)
-        super.setBaseList(imageData)
-        createOtherItemList()
-    }*/
 
+    var textViewModel: TextViewModel? = null
+    var bannerList = arrayListOf<String>()
+    var leadList = arrayListOf<LeadResponse>()
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewtype: Int): RecyclerView.ViewHolder {
         if (viewtype == 0) {
             val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.curosel_header_item_view, viewGroup, false)
@@ -42,37 +33,41 @@ class FeedAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.View
         }
     }
 
-
-    /*override fun createOtherItemList() {
-        val dummyObject1 = DummyObject(0, 0)
-        super.otherViewPositions.add(dummyObject1)
-
+    fun setLeadData(leadlist : ArrayList<LeadResponse>){
+        this.leadList.addAll(leadlist)
+        notifyDataSetChanged()
     }
-*/
     override fun getItemCount(): Int {
-        return 8
+        return leadList.size
+    }
+
+    fun setViewModel(textViewModel: TextViewModel) {
+        this.textViewModel = textViewModel
     }
 
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
         if (viewHolder.itemViewType == 0) {
+            textViewModel!!.getBanners().observe(context as MainActivity, Observer {
+                if (it?.data != null) {
+                    this.bannerList = it.data!!.banners as ArrayList<String>
+                }
+            })
             val bannerAdapter = BannerAdapter((context as MainActivity).supportFragmentManager, context)
             val holder1 = viewHolder as BannersHolder
             holder1.bannerPager.adapter = bannerAdapter
             var imageData: ArrayList<ImageData> = ArrayList()
-            var im: ImageData = ImageData()
-            im.url = "https://picsum.photos/500/200?image=0"
-            imageData.add(im)
-            imageData.add(im)
-            imageData.add(im)
-            imageData.add(im)
-            imageData.add(im)
-            imageData.add(im)
-            imageData.add(im)
-            imageData.add(im)
+            for (item in bannerList) {
+                var im: ImageData = ImageData()
+                im.url = item
+                imageData.add(im)
+            }
             bannerAdapter.swapBanners(imageData)
             holder1.bannerPager.adapter = bannerAdapter
         }
-
+        else{
+            val holder1 = viewHolder as LeadViewHolder
+            holder1.leadNamme.text = leadList[position-1].name+" with id "+leadList[position-1].id
+        }
     }
 
     class BannerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

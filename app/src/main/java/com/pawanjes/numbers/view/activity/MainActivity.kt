@@ -1,5 +1,7 @@
 package com.pawanjes.numbers.view.activity
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -10,10 +12,15 @@ import android.view.Menu
 import android.view.MenuItem
 import com.pawanjes.numbers.R
 import com.pawanjes.numbers.view.adapter.FeedAdapter
+import com.pawanjes.numbers.viewmodel.TextViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+
+    var textViewModel: TextViewModel? = null
+    var feedAdapter: FeedAdapter?=null
     override fun isHomeAsUpEnabled(): Boolean {
         return false
     }
@@ -25,12 +32,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-//
-//        fab.setOnClickListener { view ->
-//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                .setAction("Action", null).show()
-//        }
-
+        textViewModel = ViewModelProviders.of(this).get(TextViewModel::class.java)
         val toggle = ActionBarDrawerToggle(
             this, drawer_layout, toolbar,
             R.string.navigation_drawer_open,
@@ -43,10 +45,21 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
         nav_view.setNavigationItemSelectedListener(this)
 
-        var feedAdapter = FeedAdapter(this)
+         feedAdapter = FeedAdapter(this)
         var linearLayoutManager: LinearLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        feedAdapter!!.setViewModel(textViewModel!!)
         rv_lead_cat.layoutManager = linearLayoutManager
         rv_lead_cat.adapter = feedAdapter
+
+        fetchLeads()
+    }
+
+    private fun fetchLeads() {
+        textViewModel!!.getMainLeads().observe(this, Observer {
+            if(it?.data!=null){
+                feedAdapter!!.setLeadData(it.data!!)
+            }
+        })
 
     }
 
@@ -54,7 +67,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START)
         } else {
-//            super.onBackPressed()
+            finish()
         }
     }
 
